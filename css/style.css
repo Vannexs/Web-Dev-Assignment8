@@ -19,9 +19,11 @@ body {
 header {
     background: #333;
     color: #fff;
-    padding-top: 30px;
+    padding-top: 20px; /* Adjusted padding */
+    padding-bottom: 10px; /* Adjusted padding */
     min-height: 70px;
     border-bottom: #0779e4 3px solid;
+    position: relative; /* For positioning menu toggle */
 }
 
 header a {
@@ -45,21 +47,54 @@ header li {
 
 header #branding {
     float: left;
+    padding-bottom: 10px; /* Space below title */
 }
 
 header #branding h1 {
     margin: 0;
-    padding-bottom: 10px; /* Space below title */
 }
 
 header nav {
     margin-top: 10px; /* Align nav items vertically with title */
 }
 
-header .current a, header a:hover { /* Style for current page and hover */
+/* Style for current page (set by JS) and hover */
+header li.active a, /* Changed from .current a */
+header a:hover {
     color: #0779e4;
     font-weight: bold;
 }
+
+/* Mobile Menu Toggle (Hamburger) */
+#mobile-menu-toggle {
+    display: none; /* Hidden by default on larger screens */
+    position: absolute;
+    right: 20px;
+    top: 25px; /* Adjust as needed */
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#mobile-menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hamburger animation when active */
+#mobile-menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+#mobile-menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+#mobile-menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 
 /* Main Content Area */
 main {
@@ -73,7 +108,7 @@ main h1 {
     margin-bottom: 20px;
 }
 
-/* Blog Post Styling (for blog.html and individual posts) */
+/* Blog Post Styling */
 .post-preview {
     background: #fff;
     padding: 20px;
@@ -121,4 +156,69 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 30px;
+}
+
+/* Responsive Design for Navigation */
+@media (max-width: 768px) {
+    header #branding {
+        float: none;
+        text-align: center;
+        padding-bottom: 0; /* Remove bottom padding on mobile */
+    }
+    header #branding h1 {
+        font-size: 1.8em; /* Slightly smaller title on mobile */
+    }
+
+    header nav {
+        margin-top: 0;
+        float: none;
+    }
+
+    header nav ul {
+        display: none; /* Hide nav by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #444; /* Background for mobile menu */
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    header nav ul.active {
+        display: flex; /* Show nav when .active class is added by JS */
+    }
+
+    header nav ul li {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block; /* Make links fill the li */
+        padding: 10px;
+    }
+
+    header li.active a,
+    header a:hover {
+        background-color: #0779e4; /* Highlight for active/hover on mobile */
+        color: #fff;
+    }
+    header li.active a { /* Ensure active JS highlight has precedence */
+        font-weight: bold;
+        background-color: #065fa1; /* Slightly different for active */
+    }
+
+
+    #mobile-menu-toggle {
+        display: block; /* Show hamburger on mobile */
+        top: 20px; /* Adjust if header padding changes */
+    }
+
+    .container {
+        width: 95%; /* More screen space on mobile */
+    }
 }
