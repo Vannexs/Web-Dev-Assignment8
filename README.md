@@ -79,7 +79,3 @@ The `main.js` file handles two main pieces of functionality:
 ## Contributing
 
 This is a simple demonstration project. If you have suggestions or find issues, feel free to open an issue or propose changes if this were a collaborative project.
-
----
-
-Feel free to adapt this README to better suit any specific details or goals you have for the project!
